@@ -16,7 +16,7 @@ Add to `composer.json`:
 ```
 
 ```bash
-composer require socialiteproviders/streamlabs
+composer require socialiteproviders/streamlabs:"dev-main"
 ```
 
 ## Installation & Basic Usage
