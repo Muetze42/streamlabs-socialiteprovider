@@ -2,6 +2,7 @@
 
 namespace SocialiteProviders\Streamlabs;
 
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Laravel\Socialite\Two\User as SocialiteUser;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
@@ -37,11 +38,12 @@ class Provider extends AbstractProvider
 
     /**
      * {@inheritdoc}
+     * @throws GuzzleException
      */
     protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()->get(
-            'https://streamlabs.com/api/v1.0/user',
+            'https://streamlabs.com/api/v2.0/user',
             [
                 RequestOptions::QUERY => [
                     'access_token' => $token,
