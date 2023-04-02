@@ -1,4 +1,19 @@
-# Streamlabs
+# Streamlabs API V2
+
+Refactor for Streamlabs API V2.
+
+Add to `composer.json`:
+
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Muetze42/streamlabs-socialiteprovider"
+        }
+    ]
+}
+```
 
 ```bash
 composer require socialiteproviders/streamlabs
@@ -22,7 +37,8 @@ Please see the [Base Installation Guide](https://socialiteproviders.com/usage/),
 
 Configure the package's listener to listen for `SocialiteWasCalled` events.
 
-Add the event to your `listen[]` array in `app/Providers/EventServiceProvider`. See the [Base Installation Guide](https://socialiteproviders.com/usage/) for detailed instructions.
+Add the event to your `listen[]` array in `app/Providers/EventServiceProvider`. See
+the [Base Installation Guide](https://socialiteproviders.com/usage/) for detailed instructions.
 
 ```php
 protected $listen = [
@@ -43,11 +59,12 @@ return Socialite::with('streamlabs')->redirect();
 
 ### Returned User fields
 
-- ``id``
-- ``name``
-- ``accounts``
+- `id`
+- `name`
+- `accounts`
 
-> Note: ``accounts`` is an array of providers that the user has signed-in with Streamlabs; included values are Twitch (``twitch``), YouTube (``youtube``), and Facebook (``facebook``).
+> Note: `accounts` is an array of providers that the user has signed-in with Streamlabs; included values are Twitch (`twitch`),
+> YouTube (`youtube`), and Facebook (`facebook`).
 
 ### Reference
 

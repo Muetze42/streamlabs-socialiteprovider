@@ -3,6 +3,7 @@
 namespace SocialiteProviders\Streamlabs;
 
 use GuzzleHttp\RequestOptions;
+use Laravel\Socialite\Two\User as SocialiteUser;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use SocialiteProviders\Manager\OAuth2\User;
 
@@ -18,10 +19,10 @@ class Provider extends AbstractProvider
     /**
      * {@inheritdoc}
      */
-    protected function getAuthUrl($state)
+    protected function getAuthUrl($state): string
     {
         return $this->buildAuthUrlFromBase(
-            'https://streamlabs.com/api/v1.0/authorize',
+            'https://streamlabs.com/api/v2.0/authorize',
             $state
         );
     }
@@ -29,9 +30,9 @@ class Provider extends AbstractProvider
     /**
      * {@inheritdoc}
      */
-    protected function getTokenUrl()
+    protected function getTokenUrl(): string
     {
-        return 'https://streamlabs.com/api/v1.0/token';
+        return 'https://streamlabs.com/api/v2.0/token';
     }
 
     /**
@@ -54,7 +55,7 @@ class Provider extends AbstractProvider
     /**
      * {@inheritdoc}
      */
-    protected function mapUserToObject(array $user)
+    protected function mapUserToObject(array $user): SocialiteUser|User
     {
         $mainAccount = $user['streamlabs'];
 
@@ -72,7 +73,7 @@ class Provider extends AbstractProvider
     /**
      * {@inheritdoc}
      */
-    protected function getTokenFields($code)
+    protected function getTokenFields($code): array
     {
         return array_merge(parent::getTokenFields($code), [
             'grant_type' => 'authorization_code',
